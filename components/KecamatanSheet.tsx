@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useMotionValue, useVelocity, animate } from "framer-motion";
 import { DAPIL, type Kecamatan } from "@/lib/data";
 import { MapPinIcon, UsersIcon, CloseIcon } from "./icons";
 
@@ -13,6 +13,8 @@ export function KecamatanSheet({
   onClose: () => void;
 }) {
   const router = useRouter();
+  const x = useMotionValue(0);
+  const velocity = useVelocity(x);
 
   return (
     <AnimatePresence>
@@ -27,15 +29,24 @@ export function KecamatanSheet({
         >
           <motion.div
             key={item.id}
+            style={{ x }}
             initial={{ y: "100%" }}
             animate={{ y: 0 }}
             exit={{ y: "100%" }}
             transition={{ type: "spring", stiffness: 320, damping: 34 }}
-            drag="y"
-            dragConstraints={{ top: 0, bottom: 0 }}
-            dragElastic={{ top: 0, bottom: 0.6 }}
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={{ left: 0.15, right: 0 }}
+            onDragStart={() => animate(x, 0, { duration: 0 })}
             onDragEnd={(_, info) => {
-              if (info.offset.y > 110) onClose();
+              const absVel = Math.abs(velocity.get());
+              if (info.offset.x < -60 || absVel > 600) {
+                // Swipe left — close sheet
+                animate(x, window.innerWidth, { type: "tween", duration: 0.25, ease: "easeIn" })
+                  .then(onClose);
+              } else {
+                animate(x, 0, { type: "tween", duration: 0.25, ease: "easeOut" });
+              }
             }}
             onClick={(e) => e.stopPropagation()}
             className="relative w-full max-w-md rounded-t-3xl bg-white p-6 shadow-2xl sm:rounded-3xl"

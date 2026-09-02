@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useVelocity, animate, useIsomorphicLayoutEffect } from "framer-motion";
 import {
   MapPinIcon,
   UsersIcon,
@@ -11,7 +11,27 @@ import {
   ClipboardDocumentIcon,
 } from "@/components/icons";
 import type { KecamatanDetail } from "@/lib/kecamatan-detail";
+import { useEffect } from "react";
 
+/* ─── swipe-left-back hook ───────────────────────────────────── */
+function useSwipeLeftBack(onSwipeLeft: () => void) {
+  const x = useMotionValue(0);
+  const velocity = useVelocity(x);
+
+  useEffect(() => {
+    const unsub = x.on("change", () => {
+      const vel = Math.abs(velocity.get());
+      const offset = x.get();
+      if (offset < -80 || vel > 700) {
+        x.set(window.innerWidth);
+        onSwipeLeft();
+      }
+    });
+    return unsub;
+  }, [x, velocity, onSwipeLeft]);
+
+  return x;
+}
 
 function PersonRow({ label, name, accent = false }: { label: string; name: string; accent?: boolean }) {
   return (
@@ -55,6 +75,7 @@ export function KecamatanDetailPage({ data }: { data: KecamatanDetail }) {
   const desaItems = data.desa.filter((d) => d.tipe === "desa");
   const kelurahanItems = data.desa.filter((d) => d.tipe === "kelurahan");
   const p = data.pengurusLengkap;
+  const swipeX = useSwipeLeftBack(() => router.back());
 
   /* count total pengurus */
   const totalPengurus = (() => {
@@ -65,6 +86,7 @@ export function KecamatanDetailPage({ data }: { data: KecamatanDetail }) {
 
   return (
     <motion.div
+      style={{ x: swipeX }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
