@@ -32,20 +32,21 @@ export function KecamatanSheet({
             style={{ x }}
             initial={{ y: "100%" }}
             animate={{ y: 0 }}
-            exit={{ y: "100%" }}
+            exit={{ y: "100%", opacity: 0 }}
             transition={{ type: "spring", stiffness: 320, damping: 34 }}
             drag="x"
-            dragConstraints={{ left: 0, right: 0 }}
-            dragElastic={{ left: 0.15, right: 0 }}
+            dragConstraints={{ left: -window.innerWidth * 0.8, right: 0 }}
+            dragElastic={{ left: 0.2, right: 0 }}
             onDragStart={() => animate(x, 0, { duration: 0 })}
             onDragEnd={(_, info) => {
               const absVel = Math.abs(velocity.get());
-              if (info.offset.x < -60 || absVel > 600) {
-                // Swipe left — close sheet
-                animate(x, window.innerWidth, { type: "tween", duration: 0.25, ease: "easeIn" })
+              const offset = info.offset.x;
+              // Swipe left: offset negative and > threshold, or fast swipe
+              if (offset < -100 || absVel > 500) {
+                animate(x, -window.innerWidth, { type: "tween", duration: 0.2, ease: "easeIn" })
                   .then(onClose);
               } else {
-                animate(x, 0, { type: "tween", duration: 0.25, ease: "easeOut" });
+                animate(x, 0, { type: "tween", duration: 0.2, ease: "easeOut" });
               }
             }}
             onClick={(e) => e.stopPropagation()}

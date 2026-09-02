@@ -1,14 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
 import { Logo } from "./Logo";
-
-const NAV = [
-  { href: "#beranda", label: "Beranda" },
-  { href: "#kecamatan", label: "Kecamatan" },
-  { href: "#tentang", label: "Tentang" },
-  { href: "#kontak", label: "Kontak" },
-];
 
 export function Header() {
   return (
@@ -26,9 +18,14 @@ export function Header() {
           </span>
         </a>
 
-        {/* Desktop nav */}
+        {/* Desktop nav — hidden on mobile */}
         <nav className="hidden items-center gap-1 md:flex">
-          {NAV.map((item) => (
+          {[
+            { href: "#beranda", label: "Beranda" },
+            { href: "#kecamatan", label: "Kecamatan" },
+            { href: "#tentang", label: "Tentang" },
+            { href: "#kontak", label: "Kontak" },
+          ].map((item) => (
             <a
               key={item.href}
               href={item.href}
@@ -43,27 +40,6 @@ export function Header() {
           >
             Gabung
           </a>
-        </nav>
-
-        {/* Mobile nav — horizontal scroll, no hamburger */}
-        <nav className="flex md:hidden">
-          <div className="flex items-center gap-0.5 overflow-x-auto scrollbar-hide" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
-            {NAV.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="whitespace-nowrap rounded-full px-3 py-1.5 text-xs font-semibold text-leaf-800 transition hover:bg-leaf-50"
-              >
-                {item.label}
-              </a>
-            ))}
-            <a
-              href="#kontak"
-              className="whitespace-nowrap rounded-full bg-leaf-700 px-3 py-1.5 text-xs font-bold text-white"
-            >
-              Gabung
-            </a>
-          </div>
         </nav>
       </div>
     </header>
