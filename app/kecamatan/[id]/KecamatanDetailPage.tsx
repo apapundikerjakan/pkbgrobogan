@@ -114,7 +114,7 @@ export function KecamatanDetailPage({ data }: { data: KecamatanDetail }) {
           </div>
           <div>
             <h1 className="text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">
-              DPAC PKB Kecamatan {data.nama}
+              {data.nama}
             </h1>
             <p className="mt-1 text-sm text-leaf-700">Kabupaten Grobogan, Jawa Tengah</p>
             <div className="mt-2 flex flex-wrap gap-2">

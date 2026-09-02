@@ -71,7 +71,7 @@ export default function Image({ params }: { params?: { id: string } }) {
             marginBottom: 12,
           }}
         >
-          DPAC PKB Kecamatan {name}
+          {name}
         </div>
 
         <div
