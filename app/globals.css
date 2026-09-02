@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+
+  --color-leaf-50: #f0faf3;
+  --color-leaf-100: #dcf2e4;
+  --color-leaf-200: #bbe4cb;
+  --color-leaf-300: #8ccfaa;
+  --color-leaf-400: #55b183;
+  --color-leaf-500: #329664;
+  --color-leaf-600: #22794f;
+  --color-leaf-700: #1c6141;
+  --color-leaf-800: #194e36;
+  --color-leaf-900: #15402d;
+  --color-leaf-950: #07251a;
+
+  --color-honey-100: #fff4d1;
+  --color-honey-200: #ffe79f;
+  --color-honey-300: #ffd45c;
+  --color-honey-400: #ffbe2e;
+  --color-honey-500: #f9a208;
+  --color-honey-600: #db7d02;
+
+  --color-ink: #0a1d14;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #fbfdf9;
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+::selection {
+  background-color: var(--color-leaf-200);
+  color: var(--color-leaf-950);
+}
