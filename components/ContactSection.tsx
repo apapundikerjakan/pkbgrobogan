@@ -108,7 +108,7 @@ export function ContactSection() {
               href="https://wa.me/6281234567890?text=Assalamualaikum%2C%20saya%20ingin%20bergabung%20dengan%20DPAC%20PKB%20Grobogan."
               target="_blank"
               rel="noreferrer"
-              className="group mt-6 inline-flex items-center gap-2 rounded-full bg-honey-400 px-6 py-3.5 text-sm font-extrabold text-leaf-950 shadow-lg shadow-honey-500/25 transition hover:bg-honey-300"
+              className="group mt-6 inline-flex items-center gap-2 rounded-full bg-honey-400 px-6 py-3.5 text-sm font-extrabold text-leaf-950 shadow-lg shadow-honey-500/25 transition hover:bg-honey-300 hidden sm:inline-flex"
             >
               Daftar via WhatsApp
               <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />

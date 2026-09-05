@@ -29,8 +29,7 @@ function FloatingHex({ className, delay, dur }: { className: string; delay: numb
 
 function LogoWatermark() {
   return (
-    <div aria-hidden className="pointer-events-none absolute right-0 top-0 h-[500px] w-[500px] sm:h-[680px] sm:w-[680px]">
-      {/* Rotating 3D globe */}
+    <div aria-hidden className="pointer-events-none absolute right-0 top-4 h-[250px] w-[250px] sm:top-0 sm:h-[680px] sm:w-[680px]">
       <div className="absolute inset-0">
         <Globe3D className="h-full w-full" />
       </div>
@@ -53,23 +52,16 @@ export function Hero() {
       <FloatingHex className="right-[8%] top-40 h-10 w-10 sm:h-16 sm:w-16" delay={1.2} dur={9} />
       <FloatingHex className="bottom-14 left-[18%] h-8 w-8 sm:h-12 sm:w-12" delay={2} dur={6} />
 
-      <div className="relative mx-auto max-w-6xl px-4 pb-20 pt-16 sm:px-6 sm:pb-28 sm:pt-24">
-        <motion.div variants={fadeUp} initial="hidden" animate="show" custom={0}>
-          <span className="inline-flex items-center gap-2 rounded-full border border-honey-400/40 bg-honey-400/10 px-3.5 py-1.5 text-xs font-bold uppercase tracking-widest text-honey-300">
-            <span className="h-1.5 w-1.5 rounded-full bg-honey-400" />
-            Dewan Pengurus Anak Cabang
-          </span>
-        </motion.div>
-
+      <div className="relative mx-auto w-full max-w-7xl px-6 pb-32 pt-32 sm:px-8 sm:pb-40 sm:pt-60">
         <motion.h1
           variants={fadeUp}
           initial="hidden"
           animate="show"
           custom={1}
-          className="mt-5 max-w-2xl text-4xl font-extrabold leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl"
+          className="mt-5 text-4xl font-extrabold leading-snug tracking-tight sm:text-5xl lg:text-6xl lg:leading-[1.08]"
         >
-          DPAC PKB{" "}
-          <span className="bg-gradient-to-r from-honey-300 to-honey-500 bg-clip-text text-transparent">
+          <span className="block sm:inline">DPAC PKB </span>
+          <span className="block bg-gradient-to-r from-honey-300 to-honey-500 bg-clip-text text-transparent sm:inline">
             Grobogan
           </span>
         </motion.h1>
@@ -79,34 +71,12 @@ export function Hero() {
           initial="hidden"
           animate="show"
           custom={2}
-          className="mt-5 max-w-xl text-base leading-relaxed text-leaf-100/85 sm:text-lg"
+          className="mt-5 max-w-xl text-sm leading-relaxed text-leaf-100/85 sm:text-base"
         >
           Satu sarang, sembilan belas kecamatan. Seperti lebah yang mengambil
           madu tanpa merusak bunga, kami bekerja untuk rakyat tanpa meninggalkan
           siapa pun.
         </motion.p>
-
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate="show"
-          custom={3}
-          className="mt-8 flex flex-wrap items-center gap-3"
-        >
-          <a
-            href="#kecamatan"
-            className="group inline-flex items-center gap-2 rounded-full bg-honey-400 px-6 py-3.5 text-sm font-extrabold text-leaf-950 shadow-lg shadow-honey-500/25 transition hover:bg-honey-300"
-          >
-            Jelajahi Sarang Kita
-            <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-          </a>
-          <a
-            href="#kontak"
-            className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3.5 text-sm font-bold text-white transition hover:bg-white/10"
-          >
-            Hubungi Kami
-          </a>
-        </motion.div>
 
         <motion.dl
           variants={fadeUp}
